@@ -1,0 +1,26 @@
+<div>
+  <label>Title</label>
+  <input type="text" name="title" value="{{sighting.title}}"/>
+</div>
+<div>
+  <label>Email</label>
+  <input type="text" name="email" value="{{sighting.email}}"/>
+</div>
+<div>
+  <label>Shape of the UFO</label>
+  {% for shape_key, shape_name in ufo_shapes.items() %}
+  <input type="radio" name="shape-category" value="{{shape_key}}" {%if sighting.shape_category == shape_key %} checked {%endif%}/>{{shape_name}}
+  {% endfor %}
+</div>
+<div>
+  <input type="number" placeholder="Lat" name="lat" value="{{sighting.lat}}" />
+  <input
+    type="text"
+    placeholder="Lng"
+    name="lng"
+    value="{{sighting.lng}}"
+  />
+</div>
+<div>
+  <textarea name="comments">{{sighting.description}}</textarea>
+</div>

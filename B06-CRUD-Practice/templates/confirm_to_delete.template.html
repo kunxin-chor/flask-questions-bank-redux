@@ -1,0 +1,10 @@
+{% extends 'layout.template.html' %}
+
+{% block content %}
+<div class="alert alert-danger">
+    <form method="POST">
+        <p>Are you sure you want to delete the sighting titled "{{sighting.title}}" ?</p>
+        <input type="submit" value="Confirm Delete" class="btn btn-danger"/>
+    </form>
+</div>
+{% endblock%}
