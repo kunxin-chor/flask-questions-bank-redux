@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Make a booking</h1>
     <form method="POST">
         <div>
             <label>Name:</label>
@@ -13,15 +14,16 @@
         </div>
         <div>
             <label>Select your appetizers</label>
-            <input type="checkbox" name="appetizers" value="appetizer-seafood"/>Overprized chilled seafood ($3.00)
-            <input type="checkbox" name="appetizers" value="appetizer-fries"/>Fries Sprinkled with Fake Truffle Powder ($4.50)
-            <input type="checkbox" name="appetizers" value="appetizer-salad"/>Minimal Effort Salad ($6.00)
-        </div>
+            {%for key, appetizer in appetizers.items() %}
+            <img src="static/{{appetizer.image}}"/>
+            <input type="checkbox" name="appetizers" value="{{key}}"/>{{appetizer.name}} ({{appetizer.price}})
+            {% endfor %}
+       </div>
         <div>
             <label>Select your Seating</label>
             <input type="radio" value="outdoors" name="seating"/>Outdoors
             <input type="radio" value="indoors" name="seating"/>Indoors
-            <input type="radio" value="indoors" name="seating"/>Indoors (VIP, +$10.00)
+            <input type="radio" value="indoors-vip" name="seating"/>Indoors (VIP, +$10.00)
         </div>
         <input type="submit"/>
     </form>
