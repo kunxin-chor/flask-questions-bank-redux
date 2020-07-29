@@ -17,7 +17,7 @@ def process_number():
 
 @app.route('/contact-us')
 def show_contact_form():
-    return render_template('form.template.html')
+    return render_template('form.template.html', context={})
 
 
 @app.route('/contact-us', methods=["POST"])
@@ -39,13 +39,20 @@ def process_contact_form():
     # else:
     #     accept = False
 
-    return render_template('display_results.template.html', context={
+    context = {
         "name": name,
         "gender": gender,
         "comment": comment,
         "can_contact": can_contact,
         "accept": accept
-    })
+    }
+
+    if not accept:
+        return render_template("form.template.html",
+                               message="Please accept the checkbox",
+                               context=context)
+
+    return render_template('display_results.template.html', context=context)
 
 
 # "magic code" -- boilerplate

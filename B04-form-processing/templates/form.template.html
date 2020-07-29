@@ -9,9 +9,14 @@
 
 <body>
 
+    {% if message %}
+    <div class="alert alert-dange">
+        {{message}}
+    </div>
+    {%endif%}
 	<form method="POST">
 		<label for="name">Name</label><br />
-		<input name="name" type="text" /> <br />
+		<input name="name" type="text" value="{{context.name}}"/> <br />
 		<input checked="checked" name="sex" type="radio" value="male" /> Male <br />
 		<input name="sex" type="radio" value="female" /> Female <br />
 		<textarea cols="30" rows="2" name="comment">Comment</textarea><br />
