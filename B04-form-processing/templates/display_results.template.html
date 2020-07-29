@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The user entered:</h1>
+    <ul>
+        <li>Name: {{context.name}}</li>
+        <li>Gender: {{context.gender}}</li>
+        <li>Comment: {{context.comment}}</li>
+        <li>Can Contact: {%if context.can_contact%} Yes  {%else%} No {%endif%}</li>
+        <li>Accepted terms and conditions: {%if context.accept %} Yes {%else%} No {%endif%}</li>
+    </ul>
+</body>
+</html>
