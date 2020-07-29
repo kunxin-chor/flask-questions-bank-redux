@@ -3,11 +3,12 @@ from flask import (Flask, render_template, request,
 import os
 import uuid
 import sightings
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "}t*O0-}pJrFE8KYm}AFud1B4kg^^HtdSL`EkyelUwiW?h8Zc5^" \
-                 "q5@{lHpXa/zCy"
+app.secret_key = os.environ.get('secret_key')
 
 ufo_shapes = {
     "cigar": "Cigar shaped",

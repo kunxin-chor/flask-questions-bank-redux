@@ -1,3 +1,28 @@
+## To run the solution:
+
+Make sur you have your .env file, and set the secret_key like below:
+
+```
+export secret_key="<your secret key>"
+```
+
+Be sure to install the following requirements:
+```
+click==7.1.2
+Flask==1.1.2
+itsdangerous==1.1.0
+python-dotenv==0.14.0
+uuid==1.30
+Werkzeug==1.0.1
+```
+
+Or install with:
+
+```
+pip3 install -r requirements.txt
+```
+
+
 # CRUD Practice
 
 We will be using a **dictionary** as a database. Here are some reminders on how to use a dictionary
