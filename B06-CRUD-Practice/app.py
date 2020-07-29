@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import (Flask, render_template, request,
+                   redirect, url_for, flash)
 import os
 import uuid
 import sightings
 
 
 app = Flask(__name__)
+app.secret_key = "}t*O0-}pJrFE8KYm}AFud1B4kg^^HtdSL`EkyelUwiW?h8Zc5^" \
+                 "q5@{lHpXa/zCy"
 
 ufo_shapes = {
     "cigar": "Cigar shaped",
@@ -34,10 +37,12 @@ def process_create_sighting_form():
 
     next_id = str(uuid.uuid1())
 
-    sighting = sightings.create_sighting(next_id)
+    sighting = sightings.create_sighting(next_id, request)
 
     database[next_id] = sighting
     sightings.save(database)
+    flash(f"ID added: {next_id}")
+    flash(f"New sighting created: {request.form.get('title')}")
 
     return redirect(url_for("show_all_sightings"))
 
@@ -58,11 +63,12 @@ def edit_sighting(sighting_id):
     if sighting is None:
         return "Not found. ID does not exist"
 
-    sighting = sightings.create_sighting(sighting_id)
+    sighting = sightings.create_sighting(sighting_id, request)
 
     database[sighting_id] = sighting
 
     sightings.save(database)
+    flash(f"Sighting with the id of {sighting_id} has been modified")
 
     return redirect(url_for("show_all_sightings"))
 
@@ -77,8 +83,10 @@ def show_delete_confirmation(sighting_id):
 
 @app.route('/delete-sighting/<sighting_id>', methods=["POST"])
 def process_delete(sighting_id):
+    sighting = database.get(sighting_id)
     del database[sighting_id]
-    sightings.save()
+    sightings.save(database)
+    flash(f"Sighting titled {sighting['title']} has been deleted")
     return redirect(url_for("show_all_sightings"))
 
 
